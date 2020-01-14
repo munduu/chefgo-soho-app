@@ -7,7 +7,7 @@
 //INTERNO
 //var url_geral ="http://192.168.0.2:1020/app/";
 
-var url_geral = "http://localhost/chefgo-soho-git/app_novo/";
+var url_geral = "http://192.168.100.10/chefgo-soho/app_novo/";
 
 //JOAO
 //var url_geral = "http://192.168.1.121:8081/igestao/app/santoespeto_php/";
