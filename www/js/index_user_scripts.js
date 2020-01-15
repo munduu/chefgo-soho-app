@@ -134,9 +134,9 @@
                 }else if(resultado.caminho == '2'){
                     activate_page("#cadastro_venda");
                 }else{
-                    activate_page("#cadastro_mesa");
-                    $('#n_cartao_novo').val(n_cartao);
-                    //alert("Cartao não Cadastrado!");
+                   // activate_page("#cadastro_mesa");
+                    //$('#n_cartao_novo').val(n_cartao);
+                    alert("Cartao não Cadastrado!");
                 }
             },
             error:function(resultado){
