@@ -76,12 +76,17 @@
             type:"POST",
             url:url_geral+"cadastrar_mesa.php",
             data:{n_cartao: n_mesa, user:user},
+            dataType:"json",
             timeout: 10000,
             beforeSend: function(resultado){ 
                 $('.loader').show();
             },
-            success:function(resultado){
+            success:function(resultado){ 
                 $('.loader').hide();
+                if(resultado.erro == '0'){
+                    alert('Mesa Aberta !');
+                    entrar_mesa();
+                }
                 if(resultado == 1){
                     alert('Mesa Aberta !');
                     entrar_mesa();
@@ -134,9 +139,9 @@
                 }else if(resultado.caminho == '2'){
                     activate_page("#cadastro_venda");
                 }else{
-                   // activate_page("#cadastro_mesa");
+                    activate_page("#cadastro_mesa");
                     //$('#n_cartao_novo').val(n_cartao);
-                    alert("Cartao não Cadastrado!");
+                    // alert("Cartao não Cadastrado!");
                 }
             },
             error:function(resultado){
@@ -203,15 +208,252 @@
     }
     //Login Inicio object.onmousedown
     
+    // touchstart
+    // Destaques INICIO
+    $(document).on("click", ".volta_cat", function(evt){
+        $('.destaques').hide();
+        $('.categorias').show();
+        $('.volta_cat_ion').hide();
+    });
+
+    $(document).on("click", ".cat", function(evt){
+        // console.log(evt.target.dataset.value);
+
+        //Produtos em destaque Inicio 
+        $.ajax({
+        type:"POST", 
+        crossDomain: true,
+        dataType:"json",
+        url:url_geral+"destaques.php",
+        data:{ tipo: evt.target.dataset.value, busca: 'destaque'},
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
+            success:function(resultado){
+                $('.loader').hide();
+                // console.log(resultado);
+                $('.destaques').html('');
+                $.each(resultado.produtos, function(k, v) {
+                    // console.log(v.id, v.titulo);
+                    $('.destaques').append(`
+                        <ion-item class="item widget col-md-3 col-xs-6 text-left" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                            <button class="button widget button-positive prod" data-value="${v.id}" data-uib="ionic/button" data-ver="0" style="width: 100%; height: 70px; white-space: normal; line-height: 26px;">
+                                ${v.titulo}
+                            </button>
+                        </ion-item>
+                    `);
+                    
+                    $('.destaques').show();
+                    $('.volta_cat_ion').show();
+                    $('.categorias').hide();
+
+                });
+
+                // destaques
+
+                // console.log('sdfsd');
+                // $(".uib_w_31").html(resultado);
+                // if(resultado.caminho==''){
+                //     alert('NÃO DEU!');
+                // }else{ 
+                //     $(".n_mesa").val(n_mesa);
+                     
+                // }
+            },
+            error:function(resultado){
+                $('.loader').hide();
+                alert('Erro no nome do usuario #003');
+            }
+        });
+        //Produtos em destaque Fim 
+
+    });
+
+    $(document).on("click", ".prod", function(evt){
+        // console.log(evt.target.dataset.value);
+        $('#produto').val(evt.target.dataset.value);
+
+        $.ajax({
+        type:"POST", 
+        crossDomain: true,
+        dataType:"json",
+        url:url_geral+"nome_produto.php",
+        data:{ cod: $('#produto').val()},
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
+            success:function(resultado){
+                console.log(resultado.produto);
+                $('.loader').hide();
+                $('.nome_produto').html(resultado.produto);
+            },
+            error:function(resultado){
+                $('.loader').hide();
+                alert('Erro no nome do usuario #003');
+            }
+        });
+    });
+    // Destaques FIM
+
+    // Produtos INICIO
+    $(document).on("click", ".volta_cat2", function(evt){
+        $('.destaques2').hide();
+        $('.categorias2').show();
+        $('.volta_cat_ion2').hide();
+    });
+
+    $(document).on("click", ".cat2", function(evt){
+        console.log(evt.target.dataset.value);
+
+        //Produtos em destaque Inicio 
+        $.ajax({
+        type:"POST", 
+        crossDomain: true,
+        dataType:"json",
+        url:url_geral+"destaques.php",
+        data:{ tipo: evt.target.dataset.value, busca: 'todos'},
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
+            success:function(resultado){
+                $('.loader').hide();
+                // console.log(resultado);
+                $('.destaques2').html('');
+                $.each(resultado.produtos, function(k, v) {
+                    // console.log(v.id, v.titulo);
+                    $('.destaques2').append(`
+                        <ion-item class="item widget col-md-3 col-xs-6 text-left" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                            <button class="button widget button-positive prod2" data-value="${v.id}" data-uib="ionic/button" data-ver="0" style="width: 100%; height: 70px; white-space: normal; line-height: 26px;">
+                                ${v.titulo}
+                            </button>
+                        </ion-item>
+                    `);
+                    
+                    $('.destaques2').show();
+                    $('.volta_cat_ion2').show();
+                    $('.categorias2').hide();
+
+                });
+
+                // destaques
+
+                // console.log('sdfsd');
+                // $(".uib_w_31").html(resultado);
+                // if(resultado.caminho==''){
+                //     alert('NÃO DEU!');
+                // }else{ 
+                //     $(".n_mesa").val(n_mesa);
+                     
+                // }
+            },
+            error:function(resultado){
+                $('.loader').hide();
+                alert('Erro no nome do usuario #003');
+            }
+        });
+        //Produtos em destaque Fim 
+
+    });
+
+    $(document).on("click", ".prod2", function(evt){
+        // console.log(evt.target.dataset.value);
+        $('#produto').val(evt.target.dataset.value);
+
+        $.ajax({
+        type:"POST", 
+        crossDomain: true,
+        dataType:"json",
+        url:url_geral+"nome_produto.php",
+        data:{ cod: $('#produto').val()},
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
+            success:function(resultado){
+                console.log(resultado.produto);
+                $('.loader').hide();
+                $('.nome_produto').html(resultado.produto);
+            },
+            error:function(resultado){
+                $('.loader').hide();
+                alert('Erro no nome do usuario #003');
+            }
+        });
+    });
+    // Produtos FIM
+
+
+    $(document).on("keyup", "#produto", function(evt){
+        // console.log($('#produto').val());
+        $.ajax({
+        type:"POST", 
+        crossDomain: true,
+        dataType:"json",
+        url:url_geral+"nome_produto.php",
+        data:{ cod: $('#produto').val()},
+        timeout: 10000,
+            beforeSend: function(resultado){ 
+                $('.loader').show();
+            },
+            success:function(resultado){
+                console.log(resultado.produto);
+                $('.loader').hide();
+                $('.nome_produto').html(resultado.produto);
+            },
+            error:function(resultado){
+                $('.loader').hide();
+                alert('Erro no nome do usuario #003');
+            }
+        });
+    });
+
+
+
+
+
+    // function categorias(tipo){ 
+        // console.log('asdas'+tipo);
+        //Produtos em destaque Inicio 
+        // $.ajax({
+        // type:"POST", 
+        // dataType:"json",
+        // url:url_geral+"destaques.php",
+        // data:{n_cartao: n_cartao, n_mesa: n_mesa, tipo: tipo},
+        // timeout: 10000,
+        //     beforeSend: function(resultado){ 
+        //         $('.loader').show();
+        //     },
+        //     success:function(resultado){
+        //         $('.loader').hide();
+        //         console.log(resultado);
+        //         // $(".uib_w_31").html(resultado);
+        //         // if(resultado.caminho==''){
+        //         //     alert('NÃO DEU!');
+        //         // }else{ 
+        //         //     $(".n_mesa").val(n_mesa);
+                     
+        //         // }
+        //     },
+        //     error:function(resultado){
+        //         $('.loader').hide();
+        //         alert('Erro no nome do usuario #003');
+        //     }
+        // });
+        //Produtos em destaque Fim 
+    // }
     
-    $(document).on("touchstart", ".foco_auto", function(evt)
+    
+    $(document).on("click", ".foco_auto", function(evt)
     {
         var id_foco = $(this).attr('id');
         console.log(id_foco);
         $('#'+id_foco).focus();
     });
 	
-    $(document).on("touchstart", ".btn_entrar", function(evt)
+    $(document).on("click", ".btn_entrar", function(evt)
     {
         
         var usuario = $("#usuario").val();
@@ -256,7 +498,7 @@
     //Login Fim 
     
     //Logout Inicio 
-    $(document).on("touchstart", ".btn_sair", function(evt)
+    $(document).on("click", ".btn_sair", function(evt)
     {
         var pagina = $(this).attr('alt');
         if(pagina != ''){
@@ -270,7 +512,7 @@
     });
     //Logout Fim
     
-	$(document).on("touchstart", ".btn_imp_parc", function(evt)
+	$(document).on("click", ".btn_imp_parc", function(evt)
     {
         var n_mesa   = $("#n_mesa").val();
         var n_cartao = $("#n_cartao").val();
@@ -279,7 +521,7 @@
         imprecao_total(n_mesa,n_cartao,user,'1');
     });
 
-    $(document).on("touchstart", ".btn_fechar", function(evt)
+    $(document).on("click", ".btn_fechar", function(evt)
     {
         var n_mesa   = $("#n_mesa").val();
         var n_cartao = $("#n_cartao").val();
@@ -288,7 +530,7 @@
         imprecao_total(n_mesa,n_cartao,user,'2');
     });
 	
-	$(document).on("touchstart", ".btn_abrir_mesa", function(evt)
+	$(document).on("click", ".btn_abrir_mesa", function(evt)
     {
         var n_mesa   = $("#n_cartao_novo").val();
 		var user     = $("#n_usuario").val();
@@ -297,7 +539,7 @@
     });
 	
     //Seleção de mesa Inicio  
-    $(document).on("touchstart", ".btn_mesa", function(evt){     
+    $(document).on("click", ".btn_mesa", function(evt){     
         entrar_mesa();    
     });
      //Seleção de mesa Fim 
@@ -433,7 +675,7 @@
      //Seleção de produtos removidos, adicionados, sabores e fração + nome do produto Fim 
      
      //Função dos produtos em destaque Inicio 
-    $(document).on("touchstart", ".destaque", function(evt)
+    $(document).on("click", ".destaque", function(evt)
     {
         var prod = $(this).val();
         
@@ -443,7 +685,7 @@
      //Função dos produtos em destaque Fim 
      
      //Cadastro de venda Inicio      
-    $(document).on("touchstart", ".btn_incluir", function(evt)
+    $(document).on("click", ".btn_incluir", function(evt)
     {
         var produto  = $("#produto").val();
         var qtd      = $("#qtd").val();
@@ -547,7 +789,7 @@
      //Cadastro de venda Fim 
     
         /* button  Button */
-    $(document).on("touchstart", ".uib_w_17", function(evt)
+    $(document).on("click", ".uib_w_17", function(evt)
     {
          /*global activate_page */
          activate_page("#mesa"); 

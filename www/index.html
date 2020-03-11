@@ -152,7 +152,7 @@
                     <div class="widget uib_w_2 scale-image d-margins" data-uib="media/img" data-ver="0">
                         <figure class="figure-align">
                             <!--<img src="images/bg_logologo.jpg">-->
-                            <img src="images/chefff.fw.png">
+                            <img src="images/foodGO.png">
                             <figcaption data-position="bottom"></figcaption>
                         </figure>
                     </div>
@@ -178,7 +178,7 @@
                     <div class="widget uib_w_7 scale-image d-margins" data-uib="media/img" data-ver="0">
                         <figure class="figure-align">
                             <!--<img src="images/bg_logo.jpg">-->
-                            <img src="images/chefff.fw.png">
+                            <img src="images/foodGO.png">
                             <figcaption data-position="bottom"></figcaption>
                         </figure>
                     </div>
@@ -217,12 +217,13 @@
                     <div class="widget uib_w_11 scale-image d-margins" data-uib="media/img" data-ver="0">
                         <figure class="figure-align">
                             <!--<img src="images/bg_logo.jpg">-->
-                            <img src="images/chefff.fw.png">
+                            <img src="images/foodGO.png">
                             <figcaption data-position="bottom"></figcaption>
                         </figure>
                     </div>
                     <label class="item item-input widget d-margins" data-uib="ionic/input" data-ver="0">
-                        <input type="text" placeholder="Nº do Cartão " id="n_cartao_novo" readonly="readonly">
+                        <input type="text" placeholder="Nº do Cartão " id="n_cartao_novo">
+                        <!--  readonly="readonly" -->
                     </label>
                     <!--<label class="item item-input widget uib_w_12 d-margins" data-uib="ionic/input" data-ver="0">
                         <input type="text" placeholder="Quantidade Cover" id="qtd_cover">
@@ -290,6 +291,7 @@
                                     <input type="number" placeholder="Cod. Produto" name="produto" id="produto" class="typeahead-devs foco_auto">
                                 </label>
                                 <span class="uib_shim"></span>
+                                <span class="nome_produto" style="font-size: 20px;font-weight: bolder;"></span>
                             </div>
                         </div>
 
@@ -383,19 +385,122 @@
                         </div>
                         <span class="uib_shim"></span>
                     </form>
-                    <p><b>Lista de Vendas</b>
-                    </p>
-                    <ion-list class="widget uib_w_20 d-margins" data-uib="ionic/list" data-ver="0">
 
-                        <ion-item class="item widget uib_w_21" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
-                        <ion-item class="item widget uib_w_22" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
-                        <ion-item class="item widget uib_w_23" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
-                    </ion-list>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Lista de Vendas</a>
+                      </li>
+                      <li class="nav-item active">
+                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="profile" aria-selected="false">Destaques</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="produtos-tab" data-toggle="tab" href="#produtos" role="tab" aria-controls="produtos" aria-selected="false">Produtos</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                            <p><b>Lista de Vendas</b></p>
+                            <ion-list class="widget uib_w_20 d-margins" data-uib="ionic/list" data-ver="0">
+
+                                <ion-item class="item widget uib_w_21" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
+                                <ion-item class="item widget uib_w_22" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
+                                <ion-item class="item widget uib_w_23" data-uib="ionic/list_item" data-ver="0">List item</ion-item>
+                            </ion-list>
+
+                        </div>
+                        <div class="tab-pane fade active in" id="perfil" role="tabpanel" aria-labelledby="profile-tab">
+                            <ion-list class="widget d-margins categorias" data-uib="ionic/list" data-ver="0">
+                                <ion-item class="item widget col-6" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive cat" data-value="257" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Cerveja
+                                    </button>
+                                </ion-item>
+                                <ion-item class="item widget col-6" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive cat" data-value="243" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Chopes
+                                    </button>
+                                </ion-item>
+                                <ion-item class="item widget col-6" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive cat" data-value="91" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Drinks
+                                    </button>
+                                </ion-item>
+                                <ion-item class="item widget col-6" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive cat" data-value="98" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Comidas
+                                    </button>
+                                </ion-item>
+                                <ion-item class="item widget col-12" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive cat" data-value="95" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Outras Bebidas
+                                    </button>
+                                </ion-item>
+                            </ion-list>
+
+                            <!-- <br /> -->
+
+                            <ion-list class="widget d-margins volta_cat_ion" data-uib="ionic/list" data-ver="0" style="display: none; margin-left: 0px; margin-right: 0px;">
+                                <ion-item class="item widget col-12" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive volta_cat" data-value="95" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Voltar
+                                    </button>
+                                </ion-item>
+                            </ion-list>                            
+
+                            <ion-list class="widget d-margins destaques" data-uib="ionic/list" data-ver="0" style="display: none; margin-left: 0px; margin-right: 0px;"></ion-list>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="produtos" role="tabpanel" aria-labelledby="produtos-tab">
+                            <ion-list class="widget d-margins categorias2" data-uib="ionic/list" data-ver="0">
+                                <ion-item class="item widget col-6" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive cat2" data-value="257" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Cerveja
+                                    </button>
+                                </ion-item>
+                                <ion-item class="item widget col-6" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive cat2" data-value="243" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Chopes
+                                    </button>
+                                </ion-item>
+                                <ion-item class="item widget col-6" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive cat2" data-value="91" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Drinks
+                                    </button>
+                                </ion-item>
+                                <ion-item class="item widget col-6" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive cat2" data-value="98" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Comidas
+                                    </button>
+                                </ion-item>
+                                <ion-item class="item widget col-12" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive cat2" data-value="95" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Outras Bebidas
+                                    </button>
+                                </ion-item>
+                            </ion-list>
+
+                            <!-- <br /> -->
+
+                            <ion-list class="widget d-margins volta_cat_ion2" data-uib="ionic/list" data-ver="0" style="display: none; margin-left: 0px; margin-right: 0px;">
+                                <ion-item class="item widget col-12" data-uib="ionic/list_item" data-ver="0" style="border: 0px;">
+                                    <button class="button widget d-margins button-positive volta_cat2" data-value="95" data-uib="ionic/button" data-ver="0" style="width: 100%;">
+                                        Voltar
+                                    </button>
+                                </ion-item>
+                            </ion-list>                            
+
+                            <ion-list class="widget d-margins destaques2" data-uib="ionic/list" data-ver="0" style="display: none; margin-left: 0px; margin-right: 0px;"></ion-list>
+
+                        </div>
+
+                    </div>
 
                 </div>
                 <ion-header-bar class="bar inner-element uib_w_17 bar-positive bar-header" data-uib="ionic/header" data-ver="0" align-title="center">
                     <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
-                    <h1 class="title">ChefGO</h1>
+                    <h1 class="title">FoodGO</h1>
                     <div class="buttons widget-container content-area horiz-area wrapping-col">
                         <div class="btn_sair" alt='mesa' style="width: 100%;">
                             <p nowrap='nowrap'><i class="ion-arrow-left-a"></i> VOLTAR</p>
